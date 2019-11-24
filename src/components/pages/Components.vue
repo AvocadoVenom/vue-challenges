@@ -15,7 +15,7 @@
               <EditInPlace @edited="update($event)">
                 <template #viewMode :data="userName">
                   <div class="d-flex justify-space-between align-center">
-                    <h3 class="mr-2">Hey {{userName}}!</h3>
+                    <h3 class="mr-2 editable">Hey {{userName}}!</h3>
                     <v-icon v-if="oldValue.touched">mdi-checkbox-marked-circle</v-icon>
                   </div>
                 </template>
@@ -65,3 +65,9 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style scoped>
+.editable {
+  cursor: pointer;
+}
+</style>
