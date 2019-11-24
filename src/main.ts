@@ -4,6 +4,7 @@ import router from './router';
 import vuetify from './plugins/vuetify';
 
 import SuffixedNumber from './filters/SuffixedNumber';
+import store from './store'
 
 Vue.config.productionTip = false;
 
@@ -11,6 +12,7 @@ new Vue({
   router,
   vuetify,
   render: h => h(App),
+  store,
   filters: {
     SuffixedNumber
   }
