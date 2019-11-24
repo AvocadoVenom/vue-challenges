@@ -31,8 +31,8 @@
             </v-list-item>
           </v-list-item-group>
         </v-list>
-        <hr />
-        <h5 class="mt-2">Try it yourself!</h5>
+        <v-divider></v-divider>
+        <h5 class="my-4">Try it yourself!</h5>
         <div class="d-flex justify-space-around align-center mb-10">
           <div class="d-flex flex-column justify-start align-start px-5">
             <h4>Options</h4>
@@ -45,6 +45,7 @@
               dense
             ></v-text-field>
           </div>
+          <v-divider class="mx-4" vertical></v-divider>
           <div class="d-flex flex-column justify-space-around align-start px-5">
             <v-text-field type="number" v-model="testValue" label="Test value" solo clearable dense></v-text-field>
             <div
