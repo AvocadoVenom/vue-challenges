@@ -4,6 +4,7 @@
       <div class="d-flex flex-column justify-start align-stretch">
         <h2>Components</h2>
         <v-list dense>
+          <!-- EDIT IN PLACE -->
           <v-subheader>
             <div class="d-flex justify-space-between align-center" style="width: 100%;">
               <div>EDIT-IN-PLACE</div>
@@ -23,6 +24,16 @@
                 </template>
               </EditInPlace>
             </v-list-item-content>
+          </v-list-item>
+          <v-divider></v-divider>
+          <!-- ANIMATED TODO LIST -->
+          <v-subheader>
+            <div class="d-flex justify-space-between align-center" style="width: 100%;">
+              <div>ANIMATED TODO LIST</div>
+            </div>
+          </v-subheader>
+          <v-list-item>
+            <v-list-item-content>Content coming soon...</v-list-item-content>
           </v-list-item>
         </v-list>
       </div>
