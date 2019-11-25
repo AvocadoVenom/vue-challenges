@@ -23,6 +23,19 @@
           ></TodoItem>
         </v-list-item-content>
       </v-list-item>
+      <v-list-item>
+        <v-list-item-content>
+          <div class="d-flex justify-space-between align-center">
+            <v-text-field
+              style="width: auto"
+              placeholder="New item..."
+              v-model="newItem"
+              @keyup.enter="addItem"
+            ></v-text-field>
+            <v-icon style="cursor:pointer" class="ml-2" @click="addItem">mdi-plus</v-icon>
+          </div>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
   </v-card>
 </template>
@@ -30,17 +43,26 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
-import TodoItem from "@/components/atoms/TodoItem.vue";
+import TodoItemComponent from "@/components/atoms/TodoItem.vue";
+import { TodoItem } from "../../data/models/TodoList";
 
 export default Vue.extend({
+  data: () => ({
+    newItem: ""
+  }),
   components: {
-    TodoItem
+    TodoItem: TodoItemComponent
   },
   computed: {
     ...mapGetters(["todoList"])
   },
   methods: {
-    ...mapActions(["EDIT_STATUS", "REMOVE_ITEM", "CLEAN_ALL"]),
+    ...mapActions(["ADD_ITEM", "EDIT_STATUS", "REMOVE_ITEM", "CLEAN_ALL"]),
+    addItem: function(): void {
+      this.newItem.length > 1 &&
+        this.$store.dispatch("ADD_ITEM", new TodoItem(this.newItem, false));
+      this.newItem = "";
+    },
     cleanAll: function(): void {
       this.$store.dispatch("CLEAN_ALL");
     },
