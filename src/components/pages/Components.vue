@@ -33,7 +33,7 @@
             </div>
           </v-subheader>
           <v-list-item>
-            <v-list-item-content>Content coming soon...</v-list-item-content>
+            <AnimatedTodoList />
           </v-list-item>
         </v-list>
       </div>
@@ -43,6 +43,7 @@
 <script lang="ts">
 import Vue from "vue";
 import EditInPlace from "../molecules/EditInPlace.vue";
+import AnimatedTodoList from "../organisms/AnimatedTodoList.vue";
 
 const initialValue = "Adrien";
 
@@ -52,7 +53,8 @@ export default Vue.extend({
     oldValue: Object.assign({}, { touched: false, userName: initialValue })
   }),
   components: {
-    EditInPlace
+    EditInPlace,
+    AnimatedTodoList
   },
   methods: {
     update(edited: boolean): void {

@@ -4,7 +4,7 @@ import router from './router';
 import vuetify from './plugins/vuetify';
 
 import SuffixedNumber from './filters/SuffixedNumber';
-import store from './store'
+import store from './data/store'
 
 Vue.config.productionTip = false;
 
