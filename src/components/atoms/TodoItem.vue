@@ -23,6 +23,7 @@ export default Vue.extend({
     },
     statusStyle(): Object | null {
       return {
+        minWidth: "250px",
         "text-decoration": this.item.done ? "line-through" : null,
         color: this.item.done ? "gray" : "initial"
       };
