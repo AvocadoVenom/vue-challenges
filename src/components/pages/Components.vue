@@ -6,7 +6,10 @@
         <v-list dense>
           <!-- EDIT IN PLACE -->
           <v-subheader>
-            <div class="d-flex justify-space-between align-center" style="width: 100%;">
+            <div
+              class="d-flex justify-space-between align-center"
+              style="width: 100%;"
+            >
               <div>EDIT-IN-PLACE</div>
             </div>
           </v-subheader>
@@ -15,21 +18,52 @@
               <EditInPlace @edited="update($event)">
                 <template #viewMode :data="userName">
                   <div class="d-flex justify-space-between align-center">
-                    <h3 class="mr-2 editable">Hey {{userName}}!</h3>
-                    <v-icon v-if="oldValue.touched">mdi-checkbox-marked-circle</v-icon>
+                    <h3 class="mr-2 editable">Hey {{ userName }}!</h3>
+                    <v-icon v-if="oldValue.touched"
+                      >mdi-checkbox-marked-circle</v-icon
+                    >
                   </div>
                 </template>
                 <template #editMode :data="userName">
-                  <v-text-field label="Your name..." v-model="userName" @edited="update($event)"></v-text-field>
+                  <v-text-field
+                    label="Your name..."
+                    v-model="userName"
+                    @edited="update($event)"
+                  ></v-text-field>
                 </template>
               </EditInPlace>
             </v-list-item-content>
           </v-list-item>
           <v-divider></v-divider>
+          <!-- EDIT IN PLACE as Directive -->
+          <v-subheader>
+            <div
+              class="d-flex justify-space-between align-center"
+              style="width: 100%;"
+            >
+              <div>EDIT-IN-PLACE as Directive</div>
+            </div>
+          </v-subheader>
+          <v-list-item>
+            <v-list-item-content>
+              <h3 v-editable>Click to edit</h3>
+            </v-list-item-content>
+          </v-list-item>
+          <v-divider></v-divider>
           <!-- ANIMATED TODO LIST -->
           <v-subheader>
-            <div class="d-flex justify-space-between align-center" style="width: 100%;">
-              <div>ANIMATED TODO LIST</div>
+            <div
+              class="d-flex justify-space-between align-center"
+              style="width: 100%;"
+            >
+              <div>
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on }">
+                    ANIMATED TODO LIST
+                  </template>
+                  <span>Click to edit</span>
+                </v-tooltip>
+              </div>
             </div>
           </v-subheader>
           <v-list-item>

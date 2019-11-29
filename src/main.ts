@@ -4,7 +4,8 @@ import router from './router';
 import vuetify from './plugins/vuetify';
 
 import SuffixedNumber from './filters/SuffixedNumber';
-import store from './data/store'
+import Editable from './directives/Editable';
+import store from './data/store';
 
 Vue.config.productionTip = false;
 
@@ -15,5 +16,8 @@ new Vue({
   store,
   filters: {
     SuffixedNumber
+  },
+  directives: {
+    Editable
   }
 }).$mount('#app');
