@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 import Home from '../components/pages/Home.vue';
 import Components from '../components/pages/Components.vue';
 import Filters from '../components/pages/Filters.vue';
+import Directives from '../components/pages/Directives.vue';
 
 Vue.use(VueRouter);
 
@@ -21,6 +23,11 @@ const routes = [
     path: '/filters',
     name: 'filters',
     component: Filters
+  },
+  {
+    path: '/directives',
+    name: 'directives',
+    component: Directives
   }
 ];
 

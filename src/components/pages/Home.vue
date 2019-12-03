@@ -5,7 +5,12 @@
       <v-card-text>
         <v-list nav dense>
           <v-list-item-group v-model="challenge" color="primary">
-            <v-list-item link :to="item.route" v-for="(item, i) in challenges" :key="i">
+            <v-list-item
+              link
+              :to="item.route"
+              v-for="(item, i) in challenges"
+              :key="i"
+            >
               <v-list-item-icon>
                 <v-icon v-text="item.icon"></v-icon>
               </v-list-item-icon>
@@ -26,6 +31,7 @@ export default Vue.extend({
     challenge: 0,
     challenges: [
       { name: "Filters", route: "/filters", icon: "mdi-filter" },
+      { name: "Directives", route: "/directives", icon: "mdi-code-brackets" },
       { name: "Components", route: "/components", icon: "mdi-cube-outline" }
     ]
   })

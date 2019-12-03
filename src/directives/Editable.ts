@@ -2,39 +2,59 @@ import Vue from 'vue';
 
 const textNodes = ['P', 'H1', 'H2', 'H3'];
 
+export interface EditableOptions {
+  type: 'input' | 'checkbox';
+}
+
 export default Vue.directive('editable', {
-  bind: function (el, binding, vnode) {
-    const { tagName } = el;
-    const textNodes = ['P', 'H1', 'H2', 'H3'];
-
+  bind: function (el, binding): void {
     el.style.cursor = 'pointer';
+    const { tagName } = el;
+    const { type } = binding.value;
 
-    el.addEventListener('click', () => {
-      //   // TEXT NODE
-      if (textNodes.includes(tagName) && !el.nextElementSibling) {
-        el.style.display = 'none';
-        const input = document.createElement('input');
-        input.setAttribute('value', el.textContent as string);
-        const hint = document.createElement('small');
-        hint.textContent = 'Press Enter to Complete edition!';
-        hint.style.fontWeight = '10px';
-        hint.style.color = 'gray';
+    const textNodes = ['P', 'H1', 'H2', 'H3'];
+    let currentMode: 'edit' | 'view' = 'view';
+    let input: HTMLInputElement;
 
-        el.insertAdjacentElement('afterend', input);
-        input.insertAdjacentElement('afterend', hint);
-
-        input.focus();
-
-        input.addEventListener('keyup', (ev: KeyboardEvent) => {
-          if (ev.key === 'Enter') {
-            el.textContent = input.value.trim().length > 0 ? input.value : el.textContent;
-            el.style.display = 'initial';
-
-            hint.parentNode?.removeChild(hint);
-            input.parentNode?.removeChild(input);
-          }
-        });
+    window.addEventListener('click', (e: MouseEvent) => {
+      const targetIsNotSibling = (e.srcElement as HTMLElement)?.parentNode !== el.parentNode;
+      if (currentMode === 'edit' && targetIsNotSibling) {
+        resetViewMode();
       }
     });
+
+    el.addEventListener('click', () => {
+      if (textNodes.includes(tagName) && !el.nextElementSibling) {
+        currentMode = 'edit';
+        el.style.display = 'none';
+
+        appendEditElements();
+      }
+    });
+
+    function resetViewMode(): void {
+      currentMode = 'view';
+      el.style.display = 'initial';
+      input?.parentNode?.removeChild(input);
+    }
+
+    function appendEditElements(): void {
+      input = document.createElement('input');
+      input.setAttribute('value', el.textContent as string);
+      el.insertAdjacentElement('afterend', input);
+      input.focus();
+      input.addEventListener('keyup', (ev: KeyboardEvent) => {
+        if (['Enter', 'Escape'].includes(ev.key)) {
+          const trimmed = input.value.trim();
+          const enterKeyPressed = ev.key === 'Enter';
+
+          el.textContent = trimmed.length > 0 && enterKeyPressed ? trimmed : el.textContent;
+          resetViewMode();
+        }
+      });
+    }
+  },
+  update: function (el, binding): void {
+    console.log('update', binding)
   }
 });
