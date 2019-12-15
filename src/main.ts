@@ -6,6 +6,7 @@ import vuetify from './plugins/vuetify';
 import SuffixedNumber from './filters/SuffixedNumber';
 import Editable from './directives/Editable';
 import ExternalLink from './directives/ExternalLink';
+import Clipboard from './directives/Clipboard';
 import store from './data/store';
 
 Vue.config.productionTip = false;
@@ -20,6 +21,7 @@ new Vue({
   },
   directives: {
     Editable,
-    ExternalLink
+    ExternalLink,
+    Clipboard
   }
 }).$mount('#app');

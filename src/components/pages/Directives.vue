@@ -4,6 +4,7 @@
       <div class="d-flex flex-column justify-start align-stretch">
         <h2>Directives</h2>
         <v-list dense>
+          <!-- EDIT IN PLACE -->
           <v-subheader>
             <div>EDIT IN PLACE</div>
           </v-subheader>
@@ -25,6 +26,7 @@
               <v-radio label="Checkbox" value="checkbox"></v-radio>
             </v-radio-group>
           </v-list-item>
+          <!-- EXTERNAL LINK -->
           <v-subheader>
             <div>EXTERNAL LINK</div>
           </v-subheader>
@@ -50,6 +52,27 @@
               label="Open link in new tab"
             ></v-switch>
           </v-list-item>
+          <!-- CLIPBOARD -->
+          <v-subheader>
+            <div>CLIPBOARD</div>
+          </v-subheader>
+          <v-list-item class="d-flex justify-start align-center fill-width">
+            <v-text-field
+              style="margin-right: 6px"
+              v-model="cpContent"
+              placeholder="Enter something to copy"
+              @keyup="cpCopied = false"
+            ></v-text-field>
+            <v-btn
+              text
+              raised
+              :color="cpBtnClass"
+              :disabled="!cpContent"
+              v-clipboard:value="cpContent"
+              @click="cpCopied = true"
+              >{{ cpStatusText }}</v-btn
+            >
+          </v-list-item>
         </v-list>
       </div>
     </v-card>
@@ -68,13 +91,21 @@ export default Vue.extend({
       eipKeyboardSupport: true,
       eipFormControl: "input",
       elLink: "",
-      elNewTab: true
+      elNewTab: true,
+      cpContent: null,
+      cpCopied: false
     };
   },
   methods: {},
   computed: {
     linkIsNotValid(): boolean {
       return !RegExp(urlRegex).test(this.elLink);
+    },
+    cpStatusText(): string {
+      return this.cpCopied ? "COPIED" : "COPY";
+    },
+    cpBtnClass(): string {
+      return this.cpCopied ? "success" : "primary";
     }
   }
 });
