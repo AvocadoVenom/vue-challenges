@@ -23,6 +23,24 @@
           <v-list-item>
             <AnimatedTodoList />
           </v-list-item>
+          <v-subheader>
+            EXTENDED BUTTON
+          </v-subheader>
+          <v-list-item>
+            <ExtendedButton text="Button" :extended="ebDirection">
+              <h4>I'm an extended content!</h4>
+            </ExtendedButton>
+          </v-list-item>
+          <v-list-item
+            class="d-flex flex-column justify-start align-stretch mt-2"
+          >
+            <h4>Options</h4>
+            <v-select
+              v-model="ebDirection"
+              :items="['left', 'right']"
+              label="Direction"
+            ></v-select>
+          </v-list-item>
         </v-list>
       </div>
     </v-card>
@@ -31,13 +49,15 @@
 <script lang="ts">
 import Vue from "vue";
 import AnimatedTodoList from "../organisms/AnimatedTodoList.vue";
+import ExtendedButton from "../atoms/ExtendedButton.vue";
 
 export default Vue.extend({
   data: () => ({
-    //
+    ebDirection: "left"
   }),
   components: {
-    AnimatedTodoList
+    AnimatedTodoList,
+    ExtendedButton
   },
   methods: {
     //
