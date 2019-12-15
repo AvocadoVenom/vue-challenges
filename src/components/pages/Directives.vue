@@ -8,24 +8,20 @@
           <v-subheader>
             <div>EDIT IN PLACE</div>
           </v-subheader>
-          <v-list-item class="d-flex flex-column justify-start align-stretch">
+          <v-list-item>
             <h3 v-editable="{ type: eipFormControl }">{{ eipValue }}</h3>
           </v-list-item>
-          <v-list-item class="d-flex flex-column justify-start align-stretch">
-            <h4>Options</h4>
-            <v-switch
-              v-model="eipKeyboardSupport"
-              label="Keyboard Support"
-            ></v-switch>
-            <v-radio-group
-              label="Type of control"
-              v-model="eipFormControl"
-              column
+          <v-list-item class="d-flex justify-start align-center">
+            <v-icon v-text="iconInfo" class="mr-4"></v-icon>
+            <div
+              class="d-flex flex-column justify-start align-stretch"
+              style="color: #757575"
             >
-              <v-radio label="Input" value="input"></v-radio>
-              <v-radio label="Checkbox" value="checkbox"></v-radio>
-            </v-radio-group>
+              <small>Press Enter to confirm.</small>
+              <small>Press Escape or click outside to cancel.</small>
+            </div>
           </v-list-item>
+          <v-divider></v-divider>
           <!-- EXTERNAL LINK -->
           <v-subheader>
             <div>EXTERNAL LINK</div>
@@ -52,6 +48,7 @@
               label="Open link in new tab"
             ></v-switch>
           </v-list-item>
+          <v-divider></v-divider>
           <!-- CLIPBOARD -->
           <v-subheader>
             <div>CLIPBOARD</div>
@@ -93,7 +90,8 @@ export default Vue.extend({
       elLink: "",
       elNewTab: true,
       cpContent: null,
-      cpCopied: false
+      cpCopied: false,
+      iconInfo: "mdi-information"
     };
   },
   methods: {},
